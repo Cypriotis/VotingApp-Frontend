@@ -1,13 +1,22 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './styles.css';
+import authService from '../../authService.js';
 
 const RegistrationForm = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleCreateAccount = () => {
-    console.log('Form submitted!');
+  const handleCreateAccount = async () => {
+    try {
+      const userData = await authService.login(username, password);
+
+      // Perform actions after successful login, such as redirecting the user or updating state
+      console.log('User data:', userData);
+    } catch (error) {
+      // Handle login error, display an error message, etc.
+      console.error('Login error:', error.message);
+    }
   };
 
   return (
@@ -52,6 +61,9 @@ const RegistrationForm = () => {
             </button>
           </div>
           <div className="login-link">
+            <p>
+              Already have an account? <Link to="/login">Login</Link>
+            </p>
           </div>
         </form>
         <div className="social-media">
