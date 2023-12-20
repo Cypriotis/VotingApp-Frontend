@@ -1,25 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
+// App.js
+import React from 'react';
+import { BrowserRouter as Router, Route, Link, Routes, Navigate } from 'react-router-dom';
+import PrivateRoute from './PrivateRoute';
+import AuthService from './authService';
+import RegistrationForm from './components/register/RegistrationForm';
+import LoginForm from './components/login/LoginForm';
 
-function App() {
+const Home = () => <h2>Home</h2>;
+const Dashboard = () => <h2>Dashboard</h2>;
+const Login = ({ navigate }) => (
+  <div>
+    <h2>Login</h2>
+    <button onClick={() => { AuthService.login(); navigate('/register'); }}>Login</button>
+  </div>
+);
+const Logout = () => (
+  <div>
+    <h2>Logout</h2>
+    <button onClick={AuthService.logout}>Logout</button>
+  </div>
+);
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<LoginForm  />} />
+          <Route path="/logout" element={<Logout />} />
+          <Route path="/register" element={<RegistrationForm />} />
+        </Routes>
+      </div>
+    </Router>
   );
-}
+};
 
 export default App;
