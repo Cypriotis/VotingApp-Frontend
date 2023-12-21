@@ -5,6 +5,8 @@ import PrivateRoute from './PrivateRoute';
 import AuthService from './authService';
 import RegistrationForm from './components/register/RegistrationForm';
 import LoginForm from './components/login/LoginForm';
+import ElectionsReg from './components/electionRegistry/electionRegForm';
+import ElectionsList from './components/electionList/electionList';
 
 const Home = () => <h2>Home</h2>;
 const Dashboard = () => <h2>Dashboard</h2>;
@@ -30,6 +32,8 @@ const App = () => {
           <Route path="/login" element={<LoginForm  />} />
           <Route path="/logout" element={<Logout />} />
           <Route path="/register" element={<RegistrationForm />} />
+          <Route path="/electionreg" element={<ElectionsReg />} />
+          <Route path="/electionslist" element={<ElectionsList />} />
         </Routes>
       </div>
     </Router>
