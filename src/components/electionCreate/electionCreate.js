@@ -1,17 +1,39 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import './style.css';
+import apiService from '../../apiService.js';
 
 const ElectionsList = () => {
   const [title, settitle] = useState('');
   const [description, setdescription] = useState('');
-  const [startdate, setstartdate] = useState('');
-  const [enddate, setenddate] = useState('');
+  const [startdatetime, setstartdatetime] = useState('');
+  const [enddatetime, setenddatetime] = useState('');
   const [email, setEmail] = useState('');
 
-  const handleCreateAccount = () => {
-    console.log('Form submitted!');
-  };
+  const handleCreateElection = async () => {
+    try {
+      const userid = localStorage.getItem('ID');
+      const token = localStorage.getItem('authToken');
+
+      // Ensure the datetime format is compatible with your backend's expectations
+      const formattedStartDatetime = new Date(startdatetime).toISOString();
+      const formattedEndDatetime = new Date(enddatetime).toISOString();
+
+      const userData = await apiService.electioncreate(
+        title,
+        description,
+        formattedStartDatetime,
+        formattedEndDatetime,
+        userid,
+        token
+      );
+
+      // Perform actions after successful login, such as redirecting the user or updating state
+     // console.log('User data:', userData);
+    } catch (error) {
+      // Handle login error, display an error message, etc.
+      console.error('Login error:', error);
+    }
+  }
 
   return (
     <div className="createelection-form-container">
@@ -46,30 +68,30 @@ const ElectionsList = () => {
             />
           </div>
           <div className="form-group">
+            <label htmlFor="startdatetime">Start Date and Time:</label>
             <input
-              type="text"
+              type="datetime-local"
               className="form-control item"
-              id="startdate"
-              placeholder="Start Date"
-              value={startdate}
-              onChange={(e) => setstartdate(e.target.value)}
+              id="startdatetime"
+              value={startdatetime}
+              onChange={(e) => setstartdatetime(e.target.value)}
             />
           </div>
           <div className="form-group">
+            <label htmlFor="enddatetime">End Date and Time:</label>
             <input
-              type="text"
+              type="datetime-local"
               className="form-control item"
-              id="enddate"
-              placeholder="End Date"
-              value={enddate}
-              onChange={(e) => setenddate(e.target.value)}
+              id="enddatetime"
+              value={enddatetime}
+              onChange={(e) => setenddatetime(e.target.value)}
             />
           </div>
           <div className="form-group">
             <button
               type="button"
               className="btn btn-block create-account"
-              onClick={handleCreateAccount}
+              onClick={handleCreateElection}
             >
               Create Election
             </button>
