@@ -43,13 +43,15 @@ body {
     justify-content: center;
   }
 
-.createelection-form .item {
+  .createelection-form .item {
     border-radius: 10px;
     margin-bottom: 15px;
     padding: 8px;
     text-align: left;
-    border: 2px solid #2e2e2e17; /* Change 'yourDesiredColor' to the color you want */
-  }
+    border: 2px solid #2e2e2e17;
+    width: 100%; /* Adjust the width as needed */
+    box-sizing: border-box; /* Include padding and border in the box model */
+}
 
 .createelection-form .create-account {
     border-radius: 20px; /* Adjusted border-radius */
