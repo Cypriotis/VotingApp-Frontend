@@ -12,6 +12,8 @@ const ElectionsList = ({
   const [isButtonExpanded, setIsButtonExpanded] = useState(false);
   const [isButtonClicked, setIsButtonClicked] = useState(false);
   const navigate = useNavigate();
+  const authToken = localStorage.getItem('authToken');
+  const userid = localStorage.getItem('ID');
 
   const handleButtonClick = () => {
     console.log('Apply for promotion on this election');

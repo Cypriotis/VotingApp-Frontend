@@ -1,15 +1,32 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './styles.css';
+import authService from '../../authService.js';
+
+// import { useNavigate } from 'react-router-dom';
+
 
 const RegistrationForm = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
 
-  const handleCreateAccount = () => {
-    console.log('Form submitted!');
+  const handleCreateAccount = async () => {
+    try {
+      console.log(username, password, email);
+      const userData = await authService.register(username, password, email);
+  
+      // Perform actions after successful login
+      console.log('User data:', userData);
+  
+      // Redirect the user to the desired URL (e.g., /something)
+      window.location.href = '/login';
+    } catch (error) {
+      // Handle login error, display an error message, etc.
+      console.error('Login error:', error.message);
+    }
   };
+
 
   return (
     <div className="registration-form-container">

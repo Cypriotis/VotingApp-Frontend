@@ -2,13 +2,17 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './styles.css';
 import authService from '../../authService.js';
+import apiService from '../../apiService.js';
 
 const ElectionsReg = () => {
   const [electionCode, setElectionCode] = useState('');
 
-  const handleCreateAccount = async () => {
+  const handleRegElection = async () => {
     try {
-      const userData = await authService.login(electionCode);
+      const userid = localStorage.getItem('ID');
+      const token = localStorage.getItem('authToken');
+
+      const userData = await apiService.electionreg(userid, electionCode,token);
 
       // Perform actions after successful login, such as redirecting the user or updating state
       console.log('User data:', userData);
@@ -47,7 +51,7 @@ const ElectionsReg = () => {
             <button
               type="button"
               className="btn btn-block create-account"
-              onClick={handleCreateAccount}
+              onClick={handleRegElection}
             >
               Register and Vote
             </button>

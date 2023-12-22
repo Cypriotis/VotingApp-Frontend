@@ -1,7 +1,7 @@
 // App.js
 import React from 'react';
 import { BrowserRouter as Router, Route, Link, Routes, Navigate } from 'react-router-dom';
-import PrivateRoute from './PrivateRoute';
+import ProtectedRoute from './PrivateRoute';
 import AuthService from './authService';
 import RegistrationForm from './components/register/RegistrationForm';
 import LoginForm from './components/login/LoginForm';

@@ -4,15 +4,22 @@ import './styles.css';
 import authService from '../../authService.js';
 
 const RegistrationForm = () => {
-  const [username, setUsername] = useState('');
+  const [identifier, setiDentifier] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleCreateAccount = async () => {
+  const handleLogin = async () => {
     try {
-      const userData = await authService.login(username, password);
-
-      // Perform actions after successful login, such as redirecting the user or updating state
-      console.log('User data:', userData);
+      console.log(identifier, password);
+      const userData = await authService.login(identifier, password);
+  
+      // Perform actions after successful login
+      //console.log('User data:', userData);
+      const authToken = localStorage.getItem('authToken');
+      //console.log(authToken)
+      const userid = localStorage.getItem('ID');
+      //console.log(userid)
+      // Redirect the user to the desired URL (e.g., /something)
+      window.location.href = '/electionsform';
     } catch (error) {
       // Handle login error, display an error message, etc.
       console.error('Login error:', error.message);
@@ -35,10 +42,10 @@ const RegistrationForm = () => {
             <input
               type="text"
               className="form-control item"
-              id="username"
+              id="identifier"
               placeholder="Username"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
+              value={identifier}
+              onChange={(e) => setiDentifier(e.target.value)}
             />
           </div>
           <div className="form-group">
@@ -55,7 +62,7 @@ const RegistrationForm = () => {
             <button
               type="button"
               className="btn btn-block create-account"
-              onClick={handleCreateAccount}
+              onClick={handleLogin} // Call the handleLogin function on Login button click  
             >
               Login
             </button>

@@ -1,14 +1,16 @@
-// PrivateRoute.js
+// ProtectedRoute.js
 import React from 'react';
 import { Route, Navigate } from 'react-router-dom';
-import AuthService from './authService';
+import authService from './authService'; // Replace with your authentication service
 
-const PrivateRoute = ({ path, element }) => {
-  return AuthService.isAuthenticated ? (
-    <Route path={path} element={element} />
+const ProtectedRoute = ({ element }) => {
+  const isAuthenticated = authService.isAuthenticated();
+
+  return isAuthenticated ? (
+    <Route element={element} />
   ) : (
-    <Navigate to="/login" />
+    <Navigate to="/login" replace />
   );
 };
 
-export default PrivateRoute;
+export default ProtectedRoute;
