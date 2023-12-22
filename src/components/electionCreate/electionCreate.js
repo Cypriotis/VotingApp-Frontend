@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import './styles.css';
+import './style.css';
 
 const ElectionsList = () => {
-  const [electionid, setelectionid] = useState('');
   const [title, settitle] = useState('');
   const [description, setdescription] = useState('');
   const [startdate, setstartdate] = useState('');
@@ -15,8 +14,8 @@ const ElectionsList = () => {
   };
 
   return (
-    <div className="registration-form-container">
-      <div className="registration-form">
+    <div className="createelection-form-container">
+      <div className="createelection-form">
         <form>
           <div className="icon-container">
             <div className="icon-circle"></div>
@@ -25,16 +24,6 @@ const ElectionsList = () => {
                 <i className="icon icon-user"></i>
               </span>
             </div>
-          </div>
-          <div className="form-group">
-            <input
-              type="text"
-              className="form-control item"
-              id="electionid"
-              placeholder="Election ID"
-              value={electionid}
-              onChange={(e) => setelectionid(e.target.value)}
-            />
           </div>
           <div className="form-group">
             <input
@@ -62,7 +51,7 @@ const ElectionsList = () => {
               className="form-control item"
               id="startdate"
               placeholder="Start Date"
-              value={electionid}
+              value={startdate}
               onChange={(e) => setstartdate(e.target.value)}
             />
           </div>
@@ -82,7 +71,7 @@ const ElectionsList = () => {
               className="btn btn-block create-account"
               onClick={handleCreateAccount}
             >
-              Go vote
+              Create Election
             </button>
           </div>
         </form>

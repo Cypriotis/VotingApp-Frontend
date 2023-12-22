@@ -7,6 +7,9 @@ import RegistrationForm from './components/register/RegistrationForm';
 import LoginForm from './components/login/LoginForm';
 import ElectionsReg from './components/electionRegistry/electionRegForm';
 import ElectionsList from './components/electionList/electionList';
+import CreateElection from './components/electionCreate/electionCreate';
+import CandidateForm from './components/candidateList/candidateForm';
+import CandidateAdd from './components/candidateAdd/candidateAdd';
 
 const Home = () => <h2>Home</h2>;
 const Dashboard = () => <h2>Dashboard</h2>;
@@ -28,12 +31,15 @@ const App = () => {
     <Router>
       <div>
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<LoginForm />} />
           <Route path="/login" element={<LoginForm  />} />
           <Route path="/logout" element={<Logout />} />
           <Route path="/register" element={<RegistrationForm />} />
           <Route path="/electionreg" element={<ElectionsReg />} />
-          <Route path="/electionslist" element={<ElectionsList />} />
+          <Route path="/electionsform" element={<ElectionsList />} />
+          <Route path="/create" element={<CreateElection />} />
+          <Route path="/candform" element={<CandidateForm />} />
+          <Route path="/candadd" element={<CandidateAdd />} />
         </Routes>
       </div>
     </Router>

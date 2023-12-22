@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './styles.css';
 
 const ElectionsList = ({
@@ -8,9 +9,31 @@ const ElectionsList = ({
   startdate,
   enddate,
 }) => {
+  const [isButtonExpanded, setIsButtonExpanded] = useState(false);
+  const [isButtonClicked, setIsButtonClicked] = useState(false);
+  const navigate = useNavigate();
+
+  const handleButtonClick = () => {
+    console.log('Apply for promotion on this election');
+    setIsButtonClicked(!isButtonClicked);
+    setIsButtonExpanded(!isButtonExpanded);
+    navigate('/candform'); // Navigate to /candform when the button is clicked
+  };
+
   return (
     <div className="electionlist-form-container">
       <div className="electionlist-form">
+        <div className="expand-button-container">
+          <button
+            type="button"
+            className={`expand-button ${isButtonExpanded ? 'expanded' : ''} ${isButtonClicked ? 'clicked' : ''}`}
+            onClick={handleButtonClick}
+            onMouseEnter={() => setIsButtonExpanded(true)}
+            onMouseLeave={() => setIsButtonExpanded(false)}
+          >
+            {isButtonExpanded ? 'Apply for Promotion' : 'AFP'}
+          </button>
+        </div>
         <div className="icon-container">
           <div className="icon-circle"></div>
           <div className="form-icon">
@@ -47,7 +70,7 @@ const ElectionsList = ({
           <button
             type="button"
             className="btn btn-block create-account"
-            onClick={() => console.log('Go vote')}
+            onClick={() => navigate('/candform')} // Redirect to /candform on Go vote button click
           >
             Go vote
           </button>
