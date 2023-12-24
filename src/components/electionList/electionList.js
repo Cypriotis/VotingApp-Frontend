@@ -1,25 +1,23 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './styles.css';
+import apiService from '../../apiService.js';
 
-const ElectionsList = ({
-  electionid,
-  title,
-  description,
-  startdate,
-  enddate,
-}) => {
+const ElectionsList = ({ title, description, startdate, enddate }) => {
   const [isButtonExpanded, setIsButtonExpanded] = useState(false);
   const [isButtonClicked, setIsButtonClicked] = useState(false);
   const navigate = useNavigate();
-  const authToken = localStorage.getItem('authToken');
-  const userid = localStorage.getItem('ID');
 
-  const handleButtonClick = () => {
-    console.log('Apply for promotion on this election');
-    setIsButtonClicked(!isButtonClicked);
-    setIsButtonExpanded(!isButtonExpanded);
-    navigate('/candform'); // Navigate to /candform when the button is clicked
+  const handleButtonClick = async () => {
+    try {
+      // You can perform additional actions if needed
+      console.log('Apply for promotion on this election');
+      setIsButtonClicked(!isButtonClicked);
+      setIsButtonExpanded(!isButtonExpanded);
+      navigate('/candform'); // Navigate to /candform when the button is clicked
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (

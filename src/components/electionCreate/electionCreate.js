@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import './style.css';
 import apiService from '../../apiService.js';
+import { useNavigate } from 'react-router-dom';
+
 
 const ElectionsList = () => {
   const [title, settitle] = useState('');
@@ -9,10 +11,15 @@ const ElectionsList = () => {
   const [enddatetime, setenddatetime] = useState('');
   const [email, setEmail] = useState('');
 
+  const navigate = useNavigate();  // Change the hook name to useNavigate
+
+
+
   const handleCreateElection = async () => {
     try {
       const userid = localStorage.getItem('ID');
       const token = localStorage.getItem('authToken');
+      
 
       // Ensure the datetime format is compatible with your backend's expectations
       const formattedStartDatetime = new Date(startdatetime).toISOString();
@@ -26,8 +33,7 @@ const ElectionsList = () => {
         userid,
         token
       );
-
-      // Perform actions after successful login, such as redirecting the user or updating state
+      navigate('/test');      // Perform actions after successful login, such as redirecting the user or updating state
      // console.log('User data:', userData);
     } catch (error) {
       // Handle login error, display an error message, etc.

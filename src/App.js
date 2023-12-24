@@ -6,10 +6,10 @@ import AuthService from './authService';
 import RegistrationForm from './components/register/RegistrationForm';
 import LoginForm from './components/login/LoginForm';
 import ElectionsReg from './components/electionRegistry/electionRegForm';
-import ElectionsList from './components/electionList/electionList';
 import CreateElection from './components/electionCreate/electionCreate';
 import CandidateForm from './components/candidateList/candidateForm';
 import CandidateAdd from './components/candidateAdd/candidateAdd';
+import ParentComponent from './components/electionList/parentComp';
 
 const Home = () => <h2>Home</h2>;
 const Dashboard = () => <h2>Dashboard</h2>;
@@ -36,7 +36,7 @@ const App = () => {
           <Route path="/logout" element={<Logout />} />
           <Route path="/register" element={<RegistrationForm />} />
           <Route path="/electionreg" element={<ElectionsReg />} />
-          <Route path="/electionsform" element={<ElectionsList />} />
+          <Route path="/electionslist" element={<ParentComponent />} />
           <Route path="/create" element={<CreateElection />} />
           <Route path="/candform" element={<CandidateForm />} />
           <Route path="/candadd" element={<CandidateAdd />} />
