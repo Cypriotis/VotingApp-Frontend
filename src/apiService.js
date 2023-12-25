@@ -1,4 +1,4 @@
-const API_BASE_URL = 'http://35.180.69.130:3000/api';
+const API_BASE_URL = 'http://13.38.118.0:3000/api';
 
 const apiService = {
   electionreg: async (UserID, UniqueCode, token) => {
@@ -58,6 +58,33 @@ const apiService = {
       throw error;
     }
   
+  },
+  electionapply: async (electionid) => {
+    const token = localStorage.getItem('authToken');
+    const Authorization = token; // Make sure the token is formatted correctly
+
+    try {
+      const response = await fetch(`${API_BASE_URL}/applyforelection/${electionid}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*', // This is not needed for a POST request
+          'Authorization': Authorization,
+        },
+        credentials: 'include', // Include credentials (cookies, etc.)
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to register user to election');
+      }
+
+      const data = await response.json();
+      console.log('Registry to election successful');
+      // Adjust based on your server's requirements
+    } catch (error) {
+      console.error('Failed to register user to election:', error);
+      throw error;
+    }
   },
 
   getelections: async (userid, token) => {

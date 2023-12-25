@@ -1,20 +1,31 @@
+// ElectionsList.js
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './styles.css';
 import apiService from '../../apiService.js';
 
-const ElectionsList = ({ title, description, startdate, enddate }) => {
+const ElectionsList = ({ electionid, title, description, startdate, enddate }) => {
   const [isButtonExpanded, setIsButtonExpanded] = useState(false);
   const [isButtonClicked, setIsButtonClicked] = useState(false);
   const navigate = useNavigate();
 
-  const handleButtonClick = async () => {
+  const handleButtonClick = async (electionid) => {
     try {
-      // You can perform additional actions if needed
-      console.log('Apply for promotion on this election');
+      console.log(`Apply for promotion on election with ID: ${electionid}`);
       setIsButtonClicked(!isButtonClicked);
       setIsButtonExpanded(!isButtonExpanded);
-      navigate('/candform'); // Navigate to /candform when the button is clicked
+      console.log(electionid);
+      const userId = localStorage.getItem('ID');
+      console.log(userId);
+
+      // Make an API call using the ElectionID
+      const response = await apiService.electionapply(electionid);
+
+      // Handle the API response as needed
+      console.log(response);
+
+      // Example: Navigate to /candform with the ElectionID as a query parameter
+      //navigate(`/candform?electionId=${electionId}`);
     } catch (error) {
       console.log(error);
     }
@@ -23,17 +34,16 @@ const ElectionsList = ({ title, description, startdate, enddate }) => {
   return (
     <div className="electionlist-form-container">
       <div className="electionlist-form">
-        <div className="expand-button-container">
-          <button
-            type="button"
-            className={`expand-button ${isButtonExpanded ? 'expanded' : ''} ${isButtonClicked ? 'clicked' : ''}`}
-            onClick={handleButtonClick}
-            onMouseEnter={() => setIsButtonExpanded(true)}
-            onMouseLeave={() => setIsButtonExpanded(false)}
-          >
-            {isButtonExpanded ? 'Apply for Promotion' : 'AFP'}
-          </button>
-        </div>
+        <button
+          type="button"
+          className={`expand-button ${isButtonExpanded ? 'expanded' : ''} ${isButtonClicked ? 'clicked' : ''}`}
+          onClick={() => handleButtonClick(electionid)}
+          onMouseEnter={() => setIsButtonExpanded(true)}
+          onMouseLeave={() => setIsButtonExpanded(false)}
+        >
+          {isButtonExpanded ? 'Apply for Promotion' : 'AFP'}
+        </button>
+        {/* Rest of your form content */}
         <div className="icon-container">
           <div className="icon-circle"></div>
           <div className="form-icon">
@@ -70,7 +80,7 @@ const ElectionsList = ({ title, description, startdate, enddate }) => {
           <button
             type="button"
             className="btn btn-block create-account"
-            onClick={() => navigate('/candform')} // Redirect to /candform on Go vote button click
+            onClick={() => navigate(`/candform?electionId=${electionid}`)}
           >
             Go vote
           </button>
