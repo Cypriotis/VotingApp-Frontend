@@ -1,10 +1,11 @@
 // ElectionsList.js
+
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './styles.css';
 import apiService from '../../apiService.js';
 
-const ElectionsList = ({ electionid, title, description, startdate, enddate }) => {
+const ElectionsList = ({ electionid, title, description, startdate, enddate, appliedElections, setAppliedElections, acceptedElections }) => {
   const [isButtonExpanded, setIsButtonExpanded] = useState(false);
   const [isButtonClicked, setIsButtonClicked] = useState(false);
   const navigate = useNavigate();
@@ -24,26 +25,52 @@ const ElectionsList = ({ electionid, title, description, startdate, enddate }) =
       // Handle the API response as needed
       console.log(response);
 
+      // Update the applied elections state
+      setAppliedElections([...appliedElections, electionid]);
+
       // Example: Navigate to /candform with the ElectionID as a query parameter
-      //navigate(`/candform?electionId=${electionId}`);
+      // navigate(`/candform?electionId=${electionId}`);
     } catch (error) {
       console.log(error);
     }
   };
 
+  // Check if the user has applied for the current election
+  const hasApplied = appliedElections.includes(electionid);
+
+  // Check if the election is accepted
+  const isAccepted = acceptedElections.includes(electionid);
+
   return (
     <div className="electionlist-form-container">
       <div className="electionlist-form">
-        <button
-          type="button"
-          className={`expand-button ${isButtonExpanded ? 'expanded' : ''} ${isButtonClicked ? 'clicked' : ''}`}
-          onClick={() => handleButtonClick(electionid)}
-          onMouseEnter={() => setIsButtonExpanded(true)}
-          onMouseLeave={() => setIsButtonExpanded(false)}
-        >
-          {isButtonExpanded ? 'Apply for Promotion' : 'AFP'}
-        </button>
-        {/* Rest of your form content */}
+        {hasApplied ? (
+          <div className="applied-button">Applied</div>
+        ) : (
+          <>
+            <button
+              type="button"
+              className={`expand-button ${isButtonExpanded ? 'expanded' : ''} ${isButtonClicked ? 'clicked' : ''}`}
+              onClick={() => handleButtonClick(electionid)}
+              onMouseEnter={() => setIsButtonExpanded(true)}
+              onMouseLeave={() => setIsButtonExpanded(false)}
+            >
+              {isButtonExpanded ? 'Apply for Promotion' : 'AFP'}
+            </button>
+            {/* Add Candidate button */}
+            {hasApplied && isAccepted && (
+              <div className="form-group">
+                <button
+                  type="button"
+                  className="btn btn-block create-account add-candidate"  // Added "add-candidate" class
+                  onClick={() => navigate(`/test?electionId=${electionid}`)}
+                >
+                  Add Candidate
+                </button>
+              </div>
+            )}
+          </>
+        )}
         <div className="icon-container">
           <div className="icon-circle"></div>
           <div className="form-icon">
@@ -82,9 +109,21 @@ const ElectionsList = ({ electionid, title, description, startdate, enddate }) =
             className="btn btn-block create-account"
             onClick={() => navigate(`/candform?electionId=${electionid}`)}
           >
-            Go vote
+            Go Vote
           </button>
         </div>
+        {/* "Add Candidate" button with spacing */}
+        {hasApplied && isAccepted && (
+          <div className="form-group add-candidate-spacing">
+            <button
+              type="button"
+              className="btn btn-block create-account add-candidate"  // Added "add-candidate" class
+              onClick={() => navigate(`/test?electionId=${electionid}`)}
+            >
+              Add Candidate
+            </button>
+          </div>
+        )}
         <div className="social-media">
           <h5>Follow us on social media</h5>
           <div className="social-icons">

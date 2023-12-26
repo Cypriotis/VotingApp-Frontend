@@ -1,4 +1,4 @@
-const API_BASE_URL = 'http://13.38.118.0:3000/api';
+const API_BASE_URL = 'http://52.47.108.89:3000/api';
 
 const apiService = {
   electionreg: async (UserID, UniqueCode, token) => {
@@ -110,6 +110,57 @@ const apiService = {
       return data.elections; // Return the elections array directly
     } catch (error) {
       console.error('Failed to get elections:', error);
+      throw error;
+    }
+  },
+
+  getelectionsapplied: async (token) => {
+    const Authorization = token;
+  
+    try {
+      const response = await fetch(`${API_BASE_URL}/checkapplications`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*',
+          'Authorization': Authorization,
+        },
+        credentials: 'include',
+      });
+  
+      if (!response.ok) {
+        throw new Error('Failed to get elections applied');
+      }
+  
+      const data = await response.json();
+      return data; // Return the entire response data
+    } catch (error) {
+      console.error('Failed to get elections applied:', error);
+      throw error;
+    }
+  },
+  acceptedelections: async (token) => {
+    const Authorization = token;
+  
+    try {
+      const response = await fetch(`${API_BASE_URL}/acceptedelections`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*',
+          'Authorization': Authorization,
+        },
+        credentials: 'include',
+      });
+  
+      if (!response.ok) {
+        throw new Error('Failed to get elections applied');
+      }
+  
+      const data = await response.json();
+      return data; // Return the entire response data
+    } catch (error) {
+      console.error('Failed to get elections applied:', error);
       throw error;
     }
   }

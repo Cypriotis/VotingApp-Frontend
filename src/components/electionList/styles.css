@@ -193,3 +193,17 @@ body {
 .electionlist-form .expand-button.clicked {
   background-color: rgb(147, 255, 147); /* Change the color when clicked */
 }
+/* Add this style to your CSS file */
+.electionlist-form .create-account.clicked {
+  /* Your styling for the clicked state */
+  background-color: #ff0000; /* Change the color for clicked state */
+}
+/* Add this style to your CSS file */
+.electionlist-form .add-candidate-spacing {
+  margin-top: 10px; /* Adjust the margin-top value for the desired spacing */
+}
+
+/* Modify this style to change the color of the "Add Candidate" button */
+.electionlist-form .add-candidate {
+  background-color: #ff5733; /* Change the color to your desired color */
+}
