@@ -1,0 +1,33 @@
+/* navigationBarStyles.css */
+.navigation-bar-container {
+  padding: 10px 0;
+}
+
+.navbar-form {
+  background-color: #dee9ff;
+  max-width: 1000px;
+  margin: auto;
+  padding: 20px 30px;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+  border-bottom-left-radius: 15px;
+  box-shadow: 0px 2px 10px rgba(216, 214, 214, 0.075);
+  display: flex;
+  justify-content: center;
+}
+
+.nav-list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-list li {
+  display: inline-block;
+  margin-right: 20px;
+}
+
+.nav-list li a {
+  color: #2e2e2e
+}

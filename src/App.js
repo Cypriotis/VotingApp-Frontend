@@ -11,7 +11,8 @@ import CandidateForm from './components/candidateList/candidateForm';
 import CandidateAdd from './components/candidateAdd/candidateAdd';
 import ParentComponent from './components/electionList/parentComp';
 import ErrorPage from './ErrorPage';
-import NotLoggedIn from './notLoggedin'; // Import the NotLoggedIn component
+import NotLoggedIn from './notLoggedin';
+import NavigationBar from './components/navigationBar/NavigationBar'; // Import the NavigationBar component
 
 const Home = () => <h2>Home</h2>;
 const Dashboard = () => <h2>Dashboard</h2>;
@@ -31,12 +32,73 @@ const App = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/logout" element={<Logout />} />
         <Route path="/register" element={<RegistrationForm />} />
-        <Route path="/electionreg" element={<ProtectedRoute element={<ElectionsReg />} />} />
-        <Route path="/electionslist" element={<ProtectedRoute element={<ParentComponent />} />} />
-        <Route path="/create" element={<ProtectedRoute element={<CreateElection />} />} />
-        <Route path="/candform" element={<ProtectedRoute element={<CandidateForm />} />} />
-        <Route path="/candadd" element={<ProtectedRoute element={<CandidateAdd />} />} />
+        <Route
+          path="/electionreg"
+          element={
+            <ProtectedRoute
+              element={
+                <>
+                  <NavigationBar />
+                  <ElectionsReg />
+                </>
+              }
+            />
+          }
+        />
+        <Route
+          path="/electionslist"
+          element={
+            <ProtectedRoute
+              element={
+                <>
+                  <NavigationBar />
+                  <ParentComponent />
+                </>
+              }
+            />
+          }
+        />
+        <Route
+          path="/create"
+          element={
+            <ProtectedRoute
+              element={
+                <>
+                  <NavigationBar />
+                  <CreateElection />
+                </>
+              }
+            />
+          }
+        />
+        <Route
+          path="/candform"
+          element={
+            <ProtectedRoute
+              element={
+                <>
+                  <NavigationBar />
+                  <CandidateForm />
+                </>
+              }
+            />
+          }
+        />
+        <Route
+          path="/candadd"
+          element={
+            <ProtectedRoute
+              element={
+                <>
+                  <NavigationBar />
+                  <CandidateAdd />
+                </>
+              }
+            />
+          }
+        />
         <Route path="/notloggedin" element={<NotLoggedIn />} />
+        {/* Add other routes as needed */}
       </Routes>
     </Router>
   );

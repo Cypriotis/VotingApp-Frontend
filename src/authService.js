@@ -90,6 +90,37 @@ const authService = {
       return false; // Return false in case of an error
     }
   },
+  logout: async () => {
+    try {
+      const authToken = localStorage.getItem('authToken');
+      const userid = localStorage.getItem('ID');
+      localStorage.removeItem('authToken');
+      localStorage.removeItem('ID');
+  
+      const response = await fetch(`${API_BASE_URL}/logout`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*', // Adjust based on your server's requirements
+          'Authorization': authToken,
+        },
+        body: JSON.stringify({ userid }),
+        credentials: 'include', // Include credentials (cookies, etc.)
+      });
+  
+      if (!response.ok) {
+        console.error('Error logging out user', response.statusText);
+        return false; // Return false if the response status is not 200
+      }
+  
+      const result = await response.json();
+      return result; // Return the boolean result from the server
+  
+    } catch (error) {
+      console.error('Error logging user out:', error.message);
+      return false; // Return false in case of an error
+    }
+  },
   isLoggedIn: () => {
     // Check if the authentication token is present in local storage
     const authToken = localStorage.getItem('authToken');
