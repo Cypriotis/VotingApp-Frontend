@@ -1,4 +1,4 @@
-const API_BASE_URL = 'http://52.47.108.89:3000/api';
+const API_BASE_URL = 'http://13.38.62.46:3000/api';
 
 const apiService = {
   electionreg: async (UserID, UniqueCode, token) => {
