@@ -2,15 +2,16 @@
 
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './styles.css';
+import './styles.css'; // Import your CSS file
 import apiService from '../../apiService.js';
+import { wait } from '@testing-library/user-event/dist/utils/index.js';
 
 const ElectionsList = ({ electionid, title, description, startdate, enddate, appliedElections, setAppliedElections, acceptedElections }) => {
   const [isButtonExpanded, setIsButtonExpanded] = useState(false);
   const [isButtonClicked, setIsButtonClicked] = useState(false);
   const navigate = useNavigate();
 
-  const handleButtonClick = async (electionid) => {
+  const handleButtonClick = async () => {
     try {
       console.log(`Apply for promotion on election with ID: ${electionid}`);
       setIsButtonClicked(!isButtonClicked);
@@ -18,27 +19,31 @@ const ElectionsList = ({ electionid, title, description, startdate, enddate, app
       console.log(electionid);
       const userId = localStorage.getItem('ID');
       console.log(userId);
-
+  
       // Make an API call using the ElectionID
       const response = await apiService.electionapply(electionid);
-
+  
       // Handle the API response as needed
       console.log(response);
-
+  
       // Update the applied elections state
       setAppliedElections([...appliedElections, electionid]);
-
-      // Example: Navigate to /candform with the ElectionID as a query parameter
-      // navigate(`/candform?electionId=${electionId}`);
     } catch (error) {
       console.log(error);
     }
   };
 
-  // Check if the user has applied for the current election
-  const hasApplied = appliedElections.includes(electionid);
+  const handleButtonClick2 = async () => {
+    try {
+      setIsButtonClicked(!isButtonClicked);
+      console.log(electionid);
+      navigate(`/candidates/${electionid}`, { state: { electionId: electionid } });
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-  // Check if the election is accepted
+  const hasApplied = appliedElections.includes(electionid);
   const isAccepted = acceptedElections.includes(electionid);
 
   return (
@@ -57,12 +62,11 @@ const ElectionsList = ({ electionid, title, description, startdate, enddate, app
             >
               {isButtonExpanded ? 'Apply for Promotion' : 'AFP'}
             </button>
-            {/* Add Candidate button */}
             {hasApplied && isAccepted && (
               <div className="form-group">
                 <button
                   type="button"
-                  className="btn btn-block create-account add-candidate"  // Added "add-candidate" class
+                  className="btn btn-block create-account add-candidate"
                   onClick={() => navigate(`/test?electionId=${electionid}`)}
                 >
                   Add Candidate
@@ -106,18 +110,17 @@ const ElectionsList = ({ electionid, title, description, startdate, enddate, app
         <div className="form-group">
           <button
             type="button"
+            onClick={handleButtonClick2} // Corrected onClick attribute
             className="btn btn-block create-account"
-            onClick={() => navigate(`/candform?electionId=${electionid}`)}
           >
             Go Vote
           </button>
         </div>
-        {/* "Add Candidate" button with spacing */}
         {hasApplied && isAccepted && (
           <div className="form-group add-candidate-spacing">
             <button
               type="button"
-              className="btn btn-block create-account add-candidate"  // Added "add-candidate" class
+              className="btn btn-block create-account add-candidate"
               onClick={() => navigate(`/test?electionId=${electionid}`)}
             >
               Add Candidate

@@ -1,4 +1,4 @@
-const API_BASE_URL = 'http://13.38.62.46:3000/api';
+const API_BASE_URL = 'http://13.39.49.243:3000/api';
 
 const apiService = {
   electionreg: async (UserID, UniqueCode, token) => {
@@ -113,6 +113,32 @@ const apiService = {
       throw error;
     }
   },
+
+  getcandidates: async (electionid, token) => {
+    const Authorization = token;
+
+  try {
+    const response = await fetch(`${API_BASE_URL}/candidates/${electionid}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+        'Authorization': Authorization,
+      },
+      credentials: 'include',
+    });
+
+    if (!response.ok) {
+      throw new Error('Failed to get candidates for election');
+    }
+
+    const data = await response.json();
+    return data.candidates; // Return the candidates array directly
+  } catch (error) {
+    console.error('Failed to get candidates for election:', error);
+    throw error;
+  }
+},
 
   getelectionsapplied: async (token) => {
     const Authorization = token;

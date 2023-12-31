@@ -1,4 +1,3 @@
-// App.js
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import ProtectedRoute from './ProtectedRoute';
@@ -7,12 +6,12 @@ import RegistrationForm from './components/register/RegistrationForm';
 import LoginForm from './components/login/LoginForm';
 import ElectionsReg from './components/electionRegistry/electionRegForm';
 import CreateElection from './components/electionCreate/electionCreate';
-import CandidateForm from './components/candidateList/candidateForm';
 import CandidateAdd from './components/candidateAdd/candidateAdd';
 import ParentComponent from './components/electionList/parentComp';
 import ErrorPage from './ErrorPage';
 import NotLoggedIn from './notLoggedin';
-import NavigationBar from './components/navigationBar/NavigationBar'; // Import the NavigationBar component
+import NavigationBar from './components/navigationBar/NavigationBar';
+import CandidatesParentComponent from './components/candidateList/CandidatesParentComponent';
 
 const Home = () => <h2>Home</h2>;
 const Dashboard = () => <h2>Dashboard</h2>;
@@ -71,14 +70,15 @@ const App = () => {
             />
           }
         />
+        {/* Integrate dynamic parameter into /candidates route */}
         <Route
-          path="/candform"
+          path="/candidates/:electionid" // :electionid represents a dynamic parameter
           element={
             <ProtectedRoute
               element={
                 <>
                   <NavigationBar />
-                  <CandidateForm />
+                  <CandidatesParentComponent />
                 </>
               }
             />

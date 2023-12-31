@@ -1,169 +1,229 @@
-body {
-    background-color: #dee9ff;
-  }
-  
+/* candidateForm.css */
+.candidateform-form-container {
+  width: calc(33.33% - 20px); /* 33.33% width with 20px margin between forms */
+  margin-bottom: 20px;
+  box-sizing: border-box; /* Include padding and border in the width calculation */
+  padding: 0 30px; /* Add some padding to create spacing */
+}
+
+@media (max-width: 1024px) {
   .candidateform-form-container {
-    padding: 20px 0;
+    width: calc(50% - 20px); /* 50% width with 20px margin between forms for smaller screens */
   }
-  
-  .candidateform-form {
-    background-color: #ffffff;
-    max-width: 1000px;
-    margin: auto;
-    padding: 20px 30px;
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
-    border-bottom-left-radius: 15px;
-    border-bottom-right-radius: 15px;
-    box-shadow: 0px 2px 10px rgba(216, 214, 214, 0.075);
-  }
-  
-  .candidateform-form .form-icon {
-    text-align: center;
-    background-color: #8a58ff;
-    border-radius: 50%;
-    font-size: 30px;
-    color: white;
-    width: 80px;
-    height: 80px;
-    margin: auto;
-    margin-bottom: 20px;
-    line-height: 80px;
-  }
-  
-  .candidateform-form .icon-circle {
-    background-color: #dee9ff;
-    border-radius: 50%;
-    width: 100px;
-    height: 100px;
-    margin: auto;
-    margin-bottom: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-.candidateform-form .item {
-    border-radius: 10px;
-    margin-bottom: 15px;
-    padding: 12px;
-    text-align: left;
-  }
-
-.candidateform-form .create-account {
-    border-radius: 20px; /* Adjusted border-radius */
-    padding: 10px 16px; /* Adjusted padding */
-    font-size: 16px; /* Adjusted font size */
-    font-weight: bold;
-    background-color: #8a58ff;
-    border: none;
-    color: white;
-    margin-top: 20px;
-    display: block; /* Center the button */
-    margin: auto; /* Center the button */
-}
-
-.candidateform-form .social-media {
-    max-width: 500px; /* Adjusted max-width */
-    background-color: #fff;
-    margin: auto;
-    padding: 20px 0; /* Adjusted padding */
-    text-align: center;
-    border-bottom-left-radius: 15px; /* Adjusted border-radius */
-    border-bottom-right-radius: 15px; /* Adjusted border-radius */
-    color: #9fadca;
-}
-
-.candidateform-form .social-icons {
-    margin-top: 15px; /* Adjusted margin-top */
-    margin-bottom: 10px; /* Adjusted margin-bottom */
-}
-
-.candidateform-form .social-icons a {
-    font-size: 18px; /* Adjusted font size */
-    margin: 0 3px;
-    color: #8a58ff;
-    border: 1px solid;
-    border-radius: 50%;
-    width: 35px; /* Adjusted width */
-    display: inline-block;
-    height: 35px; /* Adjusted height */
-    text-align: center;
-    background-color: #fff;
-    line-height: 35px; /* Adjusted line-height */
-}
-
-.candidateform-form .social-icons a:hover {
-    text-decoration: none;
-    opacity: 0.6;
-}
-.candidateform-form .create-account {
-    border-radius: 20px;
-    padding: 10px 16px;
-    font-size: 16px;
-    font-weight: bold;
-    background-color: #8a58ff;
-    border: none;
-    color: white;
-    margin-top: 20px;
-    display: block;
-    margin: auto;
-    transition: background-color 0.3s; /* Added transition for smooth effect */
-}
-
-.candidateform-form .create-account:hover {
-    background-color: #768bca; /* Change the color on hover */
 }
 
 @media (max-width: 576px) {
-    .candidateform-form form {
-        padding: 20px 15px; /* Adjusted padding */
-    }
+  .candidateform-form-container {
+    width: 33%; /* Full width for even smaller screens */
+  }
+}
 
-    .candidateform-form .form-icon {
-        width: 50px; /* Adjusted width */
-        height: 50px; /* Adjusted height */
-        font-size: 20px; /* Adjusted font size */
-        line-height: 50px; /* Adjusted line-height */
-    }
+.candidateform-form {
+  background-color: #ffffff;
+  max-width: 1000px;
+  margin: auto;
+  padding: 20px;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  box-shadow: 0px 2px 10px rgba(216, 214, 214, 0.075);
+}
+
+.candidateform-form .form-icon {
+  text-align: center;
+  background-color: #8a58ff;
+  border-radius: 50%;
+  font-size: 30px;
+  color: white;
+  width: 80px;
+  height: 80px;
+  margin: auto;
+  margin-bottom: 20px;
+  line-height: 80px;
+}
+
+.candidateform-form .icon-circle {
+  background-color: #dee9ff;
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  margin: auto;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.candidateform-form .item {
+  border-radius: 10px;
+  margin-bottom: 15px;
+  padding: 12px;
+  text-align: left;
+}
+
+.candidateform-form .create-account {
+  border-radius: 20px;
+  padding: 10px 16px;
+  font-size: 16px;
+  font-weight: bold;
+  background-color: #8a58ff;
+  border: none;
+  color: white;
+  margin-top: 20px;
+  display: block;
+  margin: auto;
+  transition: background-color 0.3s; /* Added transition for smooth effect */
+}
+
+.candidateform-form .create-account:hover {
+  background-color: #768bca; /* Change the color on hover */
+}
+
+.candidateform-form .social-media {
+  max-width: 500px;
+  background-color: #fff;
+  margin: auto;
+  padding: 20px 0;
+  text-align: center;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  color: #9fadca;
+}
+
+.candidateform-form .social-icons {
+  margin-top: 15px;
+  margin-bottom: 10px;
+}
+
+.candidateform-form .social-icons a {
+  font-size: 18px;
+  margin: 0 3px;
+  color: #8a58ff;
+  border: 1px solid;
+  border-radius: 50%;
+  width: 35px;
+  display: inline-block;
+  height: 35px;
+  text-align: center;
+  background-color: #fff;
+  line-height: 35px;
+}
+
+.candidateform-form .social-icons a:hover {
+  text-decoration: none;
+  opacity: 0.6;
 }
 
 .icon-container {
-    position: relative;
-    margin-bottom: 20px; /* Adjusted margin-bottom */
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.icon-circle {
+  position: absolute;
+  background-color: #dee9ff;
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  margin: auto;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: -1;
+}
+
+.form-icon {
+  text-align: center;
+  background-color: #5891ff;
+  border-radius: 50%;
+  font-size: 30px;
+  color: white;
+  width: 80px;
+  height: 80px;
+  line-height: 80px;
+  z-index: 0;
+}
+
+.candidateform-form .login-link {
+  margin-top: 12px;
+  text-align: center;
+  opacity: 0.6;
+}
+
+.candidateform-form .login-link p {
+  margin: 0;
+  font-size: 10px;
+}
+
+/* Styles for the new expandable button */
+.candidateform-form .expand-button-container {
+  position: absolute;
+  top: 35px;
+  right: 782px;
+  transition: all 0.3s;
+}
+
+.candidateform-form .expand-button {
+  padding: 10px 16px;
+  font-size: 16px;
+  font-weight: bold;
+  background-color: white;
+  border: none;
+  color: #8a58ff;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+  z-index: -1;
+}
+
+.candidateform-form .expand-button:hover {
+  background-color: #ffffff;
+}
+
+.candidateform-form .expand-button-container.expanded {
+  transform: scale(1.2);
+}
+
+@media (max-width: 576px) {
+  .candidateform-form {
+    padding: 20px 15px;
   }
-  
-  .icon-circle {
-    position: absolute;
-    background-color: #dee9ff; /* Background color matching the body background */
-    border-radius: 50%;
-    width: 120px; /* Adjusted width (a little bigger than the form icon) */
-    height: 120px; /* Adjusted height (a little bigger than the form icon) */
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: -1; /* Make the circle go behind the icon */
+
+  .candidateform-form .form-icon {
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+    line-height: 50px;
   }
-  
-  .form-icon {
-    text-align: center;
-    background-color: #8a58ff;
-    border-radius: 50%;
-    font-size: 30px; /* Adjusted font size */
-    color: white;
-    width: 80px; /* Adjusted width */
-    height: 80px; /* Adjusted height */
-    line-height: 80px; /* Adjusted line-height */
-    z-index: 0;
-  }
-  
-  .candidateform-form .login-link {
-    margin-top: 12px; /* Adjusted margin-top */
-    text-align: center;
-    opacity: 0.6; /* Adjusted opacity */
-  }
-  
-  .candidateform-form .login-link p {
-    margin: 0;
-    font-size: 10px; /* Adjusted font size */
-  }
+}
+
+.candidateform-form .expand-button.clicked {
+  background-color: rgb(147, 255, 147); /* Change the color when clicked */
+}
+
+/* Add this style to your CSS file */
+.candidateform-form .create-account.clicked {
+  /* Your styling for the clicked state */
+  background-color: #ff0000; /* Change the color for clicked state */
+}
+
+/* Add this style to your CSS file */
+.candidateform-form .add-candidate-spacing {
+  margin-top: 10px; /* Adjust the margin-top value for the desired spacing */
+}
+
+/* Modify this style to change the color of the "Add Candidate" button */
+.candidateform-form .add-candidate {
+  background-color: #ff5733; /* Change the color to your desired color */
+}
+.electionlist-form-container {
+  max-width: 50%; /* Adjust as needed */
+}
+
+.candidateform-form-container {
+  max-width: 50%; /* Adjust as needed */
+}
