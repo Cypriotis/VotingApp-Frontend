@@ -114,6 +114,33 @@ const apiService = {
     }
   },
 
+  uservoted: async (userid, token) => {
+    const Authorization = token;
+    const id = userid;
+
+    try {
+      const response = await fetch(`${API_BASE_URL}/checkvotingstatus/${id}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*',
+          'Authorization': Authorization,
+        },
+        credentials: 'include',
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to get elections');
+      }
+
+      const data = await response.json();
+      return data; // Return the elections array directly
+    } catch (error) {
+      console.error('Failed to get elections:', error);
+      throw error;
+    }
+  },
+
   getcandidates: async (electionid, token) => {
     const Authorization = token;
 
@@ -138,6 +165,35 @@ const apiService = {
     console.error('Failed to get candidates for election:', error);
     throw error;
   }
+},
+
+voteforcandidate: async (candidateid,electionsid, token) => {
+  const Authorization = token;
+  const electionsId = electionsid;
+  const candidateId = candidateid
+
+try {
+  const response = await fetch(`${API_BASE_URL}/vote/`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+      'Authorization': Authorization,
+    },
+    body: JSON.stringify({ electionsId, candidateId}),
+    credentials: 'include',
+  });
+
+  if (!response.ok) {
+    throw new Error('Failed to vote for candidate');
+  }
+
+  const data = await response.json();
+  return data; // Return the entire response data
+} catch (error) {
+  console.error('Failed to vote for candidate:', error);
+  throw error;
+}
 },
 
   getelectionsapplied: async (token) => {

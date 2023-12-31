@@ -4,6 +4,9 @@ body {
 
 .electionlist-form-container {
   padding: 20px 0;
+  width: calc(33.33% - 20px); /* 33.33% width with 20px margin between forms */
+  margin-bottom: 20px;
+  box-sizing: border-box; 
 }
 
 .electionlist-form {
