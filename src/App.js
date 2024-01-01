@@ -23,6 +23,8 @@ const Logout = () => (
   </div>
 );
 
+const NotFound = () => <ErrorPage errorCode={404} />; // Customize this component as needed
+
 const App = () => {
   return (
     <Router>
@@ -98,7 +100,8 @@ const App = () => {
           }
         />
         <Route path="/notloggedin" element={<NotLoggedIn />} />
-        {/* Add other routes as needed */}
+        {/* Catch-all route for handling non-existent routes */}
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>
   );

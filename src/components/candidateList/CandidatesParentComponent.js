@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import apiService from '../../apiService';
 import CandidateForm from './candidateForm';
-import './style.css';
+import './parent.css'; // Import the modified CSS
 
 const CandidatesParentComponent = () => {
   const { electionid } = useParams();
@@ -54,9 +54,6 @@ const CandidatesParentComponent = () => {
 
   return (
     <div>
-      <div className="election-id-container">
-        {/* Render the election ID or any additional information */}
-      </div>
       <div className="candidates-container">
         {candidates.map(candidate => (
           <CandidateForm

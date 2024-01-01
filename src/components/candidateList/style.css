@@ -1,20 +1,21 @@
-/* candidateForm.css */
+/* CandidateForm.css */
+
 .candidateform-form-container {
-  width: calc(33.33% - 20px); /* 33.33% width with 20px margin between forms */
+  width: calc(33.33% - 20px);
   margin-bottom: 20px;
-  box-sizing: border-box; /* Include padding and border in the width calculation */
-  padding: 0 30px; /* Add some padding to create spacing */
+  box-sizing: border-box;
+  padding: 0 30px;
 }
 
 @media (max-width: 1024px) {
   .candidateform-form-container {
-    width: calc(50% - 20px); /* 50% width with 20px margin between forms for smaller screens */
+    width: calc(50% - 20px);
   }
 }
 
 @media (max-width: 576px) {
   .candidateform-form-container {
-    width: 33%; /* Full width for even smaller screens */
+    width: 33%;
   }
 }
 
@@ -73,11 +74,11 @@
   margin-top: 20px;
   display: block;
   margin: auto;
-  transition: background-color 0.3s; /* Added transition for smooth effect */
+  transition: background-color 0.3s;
 }
 
 .candidateform-form .create-account:hover {
-  background-color: #768bca; /* Change the color on hover */
+  background-color: #768bca;
 }
 
 .candidateform-form .social-media {
@@ -156,7 +157,6 @@
   font-size: 10px;
 }
 
-/* Styles for the new expandable button */
 .candidateform-form .expand-button-container {
   position: absolute;
   top: 35px;
@@ -202,28 +202,17 @@
 }
 
 .candidateform-form .expand-button.clicked {
-  background-color: rgb(147, 255, 147); /* Change the color when clicked */
+  background-color: rgb(147, 255, 147);
 }
 
-/* Add this style to your CSS file */
 .candidateform-form .create-account.clicked {
-  /* Your styling for the clicked state */
-  background-color: #ff0000; /* Change the color for clicked state */
+  background-color: #ff0000;
 }
 
-/* Add this style to your CSS file */
 .candidateform-form .add-candidate-spacing {
-  margin-top: 10px; /* Adjust the margin-top value for the desired spacing */
+  margin-top: 10px;
 }
 
-/* Modify this style to change the color of the "Add Candidate" button */
 .candidateform-form .add-candidate {
-  background-color: #ff5733; /* Change the color to your desired color */
-}
-.electionlist-form-container {
-  max-width: 50%; /* Adjust as needed */
-}
-
-.candidateform-form-container {
-  max-width: 50%; /* Adjust as needed */
+  background-color: #ff5733;
 }
