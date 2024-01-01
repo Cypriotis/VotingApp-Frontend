@@ -5,23 +5,25 @@
   justify-content: space-between;
   height: 95vh;
 }
-  
+
+.electionlist-form-container {
+  margin-top: 30px; /* Add margin-top to move the forms down */
+  padding: 30px 0; /* Adjust the top padding to move the forms down */
+  width: calc(33.33% - 20px);
+  margin-bottom: 20px;
+  box-sizing: border-box;
+  padding: 0 50px;
+}
+
+@media (max-width: 1024px) {
   .electionlist-form-container {
-    width: calc(33.33% - 20px); /* 33.33% width with 20px margin between forms */
-    margin-bottom: 20px;
-    box-sizing: border-box; /* Include padding and border in the width calculation */
-    padding: 0 50px; /* Add some padding to create spacing */
+    width: calc(50% - 20px);
   }
-  
-  @media (max-width: 1024px) {
-    .electionlist-form-container {
-      width: calc(50% - 20px); /* 50% width with 20px margin between forms for smaller screens */
-    }
+}
+
+@media (max-width: 576px) {
+  .electionlist-form-container {
+    width: 100%;
   }
-  
-  @media (max-width: 576px) {
-    .electionlist-form-container {
-      width: 100%; /* Full width for even smaller screens */
-    }
-  }
-  
+}
+

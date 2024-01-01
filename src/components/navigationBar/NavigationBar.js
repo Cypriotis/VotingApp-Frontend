@@ -11,7 +11,6 @@ const NavigationBar = () => {
     <div className="navigation-bar-container">
       <div className="navbar-form">
         <ul className="nav-list">
-          <li><Link to="/">Home</Link></li>
           <li><Link to="/electionslist">Your Elections</Link></li>
           <li><Link to="/create">Create Election</Link></li>
           <li><Link to="/check-applications">Check Your Election Applications</Link></li>
