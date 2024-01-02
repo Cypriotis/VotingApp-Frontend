@@ -12,6 +12,7 @@ import ErrorPage from './ErrorPage';
 import NotLoggedIn from './notLoggedin';
 import NavigationBar from './components/navigationBar/NavigationBar';
 import CandidatesParentComponent from './components/candidateList/CandidatesParentComponent';
+import ElectionApplicationsParentComponent from './components/electionApplications/showApplicationsParent';
 
 const Home = () => <h2>Home</h2>;
 const Dashboard = () => <h2>Dashboard</h2>;
@@ -54,6 +55,19 @@ const App = () => {
                 <>
                   <NavigationBar />
                   <ParentComponent />
+                </>
+              }
+            />
+          }
+        />
+        <Route
+          path="/electionApplications"
+          element={
+            <ProtectedRoute
+              element={
+                <>
+                  <NavigationBar />
+                  <ElectionApplicationsParentComponent />
                 </>
               }
             />

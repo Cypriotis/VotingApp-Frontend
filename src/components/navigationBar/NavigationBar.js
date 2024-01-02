@@ -13,7 +13,7 @@ const NavigationBar = () => {
         <ul className="nav-list">
           <li><Link to="/electionslist">Your Elections</Link></li>
           <li><Link to="/create">Create Election</Link></li>
-          <li><Link to="/check-applications">Check Your Election Applications</Link></li>
+          <li><Link to="/electionApplications">Check Your Election Applications</Link></li>
           <li><Link to="/electionreg">Register to election</Link></li>
           {isLoggedIn ? (
             <>

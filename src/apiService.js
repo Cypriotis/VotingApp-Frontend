@@ -86,6 +86,31 @@ const apiService = {
       throw error;
     }
   },
+  getElectionApplications: async (token) => {
+    const Authorization = token;
+
+    try {
+      const response = await fetch(`${API_BASE_URL}/electionApplications`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*',
+          'Authorization': Authorization,
+        },
+        credentials: 'include',
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to get election applications');
+      }
+
+      const data = await response.json();
+      return data; // Return the election applications array directly
+    } catch (error) {
+      console.error('Failed to get election applications:', error);
+      throw error;
+    }
+  },
 
   getelections: async (userid, token) => {
     const Authorization = token;
