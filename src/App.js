@@ -87,7 +87,7 @@ const App = () => {
           }
         />
         <Route
-          path="/candadd"
+          path="/candadd/:electionid"
           element={
             <ProtectedRoute
               element={

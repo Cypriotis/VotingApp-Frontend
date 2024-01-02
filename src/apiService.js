@@ -1,4 +1,4 @@
-const API_BASE_URL = 'http://15.188.59.251:3000/api';
+const API_BASE_URL = 'http://13.39.19.184:3000/api';
 
 const apiService = {
   electionreg: async (UserID, UniqueCode, token) => {
@@ -245,7 +245,39 @@ try {
       console.error('Failed to get elections applied:', error);
       throw error;
     }
-  }
+  },
+  addcandidate: async (electionid, token, candidateData) => {
+    const Authorization = token;
+    const candidateName = candidateData.candidateName;
+    const candidateDetails = candidateData.candidateDetails;
+    console.log(candidateData)
+    console.log(candidateName, candidateDetails); // Log the candidateName and candidateDetails for debugging purposes)
+    console.log(token)
+
+    try {
+      const response = await fetch(`${API_BASE_URL}/addcandidate/${electionid}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*',
+          'Authorization': Authorization,
+        },
+        body: JSON.stringify(candidateData), // Send the candidateData in the request body
+        credentials: 'include',
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to add candidate');
+      }
+
+      const data = await response.json();
+      return data; // Return the entire response data
+    } catch (error) {
+      console.error('Failed to add candidate:', error);
+      throw error;
+    }
+  },
+  
 
 };
 

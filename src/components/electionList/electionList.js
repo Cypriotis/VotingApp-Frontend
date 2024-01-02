@@ -67,7 +67,7 @@ const ElectionsList = ({ electionid, title, description, startdate, enddate, app
                 <button
                   type="button"
                   className="btn btn-block create-account add-candidate"
-                  onClick={() => navigate(`/test?electionId=${electionid}`)}
+                  onClick={() => navigate(`/candadd`)}
                 >
                   Add Candidate
                 </button>
@@ -121,7 +121,7 @@ const ElectionsList = ({ electionid, title, description, startdate, enddate, app
             <button
               type="button"
               className="btn btn-block create-account add-candidate"
-              onClick={() => navigate(`/test?electionId=${electionid}`)}
+              onClick={() => navigate(`/candadd/${electionid}`)}
             >
               Add Candidate
             </button>

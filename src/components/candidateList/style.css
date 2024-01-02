@@ -1,10 +1,20 @@
 /* CandidateForm.css */
-
 .candidateform-form-container {
-  width: calc(33.33% - 20px);
-  margin-bottom: 20px;
+  width: 200px; /* Set your desired fixed width */
+  margin: auto; /* Center the form container */
+  margin-top: 50px; /* Adjust margin-top as needed */
   box-sizing: border-box;
-  padding: 0 30px;
+  
+}
+
+.candidateform-form {
+  background-color: #ffffff;
+  max-width: 100%; /* Ensure the form does not exceed the container width */
+  margin: auto;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0px 2px 10px rgba(216, 214, 214, 0.075);
+  box-sizing: border-box;
 }
 
 @media (max-width: 1024px) {
@@ -19,17 +29,7 @@
   }
 }
 
-.candidateform-form {
-  background-color: #ffffff;
-  max-width: 1000px;
-  margin: auto;
-  padding: 20px;
-  border-top-left-radius: 15px;
-  border-top-right-radius: 15px;
-  border-bottom-left-radius: 15px;
-  border-bottom-right-radius: 15px;
-  box-shadow: 0px 2px 10px rgba(216, 214, 214, 0.075);
-}
+
 
 .candidateform-form .form-icon {
   text-align: center;

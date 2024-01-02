@@ -1,14 +1,38 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+// CandidateAdd.js
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import './style.css';
+import apiService from '../../apiService';
 
 const CandidateAdd = () => {
-  const [setfullname, settitle] = useState('');
-  const [description, setdescription] = useState('');
+  const { electionid } = useParams(); // Extract electionid from route parameters
+  const [fullname, setFullname] = useState('');
+  const [description, setDescription] = useState('');
 
-  const handleCreateAccount = () => {
-    console.log('Form submitted!');
+  const handleAddCandidate = async () => {
+    try {
+      console.log('Form submitted!');
+      const token = localStorage.getItem('authToken');
+
+      
+      // Create a candidate object with the provided data
+      const candidateData = {
+        candidateName: fullname,
+        candidateDetails: description,
+      };
+
+      // Call your API service here using electionid, token, and candidateData
+      await apiService.addcandidate(electionid, token, candidateData);
+    } catch (error) {
+      console.error('Failed to add candidate:', error);
+    }
   };
+
+  useEffect(() => {
+    // You can perform additional actions on component mount if needed
+    // For example, fetch additional data based on the electionid
+    // You can make an API call here if necessary
+  }, [electionid]);
 
   return (
     <div className="candidateadd-form-container">
@@ -28,8 +52,8 @@ const CandidateAdd = () => {
               className="form-control item"
               id="setfullname"
               placeholder="Full Name"
-              value={setfullname}
-              onChange={(e) => setfullname(e.target.value)}
+              value={fullname}
+              onChange={(e) => setFullname(e.target.value)}
             />
           </div>
           <div className="form-group">
@@ -39,14 +63,14 @@ const CandidateAdd = () => {
               id="description"
               placeholder="Description"
               value={description}
-              onChange={(e) => setdescription(e.target.value)}
+              onChange={(e) => setDescription(e.target.value)}
             />
           </div>
           <div className="form-group">
             <button
               type="button"
               className="btn btn-block create-account"
-              onClick={handleCreateAccount}
+              onClick={handleAddCandidate}
             >
               Add Candidate
             </button>
