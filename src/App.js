@@ -13,16 +13,12 @@ import NotLoggedIn from './notLoggedin';
 import NavigationBar from './components/navigationBar/NavigationBar';
 import CandidatesParentComponent from './components/candidateList/CandidatesParentComponent';
 import ElectionApplicationsParentComponent from './components/electionApplications/showApplicationsParent';
+import ElectionDetails from './components/electionDetails/electionDetails';
+import Logout from './logout';
 
 const Home = () => <h2>Home</h2>;
 const Dashboard = () => <h2>Dashboard</h2>;
 const Login = () => <LoginForm />;
-const Logout = () => (
-  <div>
-    <h2>Logout</h2>
-    <button onClick={AuthService.logout}>Logout</button>
-  </div>
-);
 
 const NotFound = () => <ErrorPage errorCode={404} />; // Customize this component as needed
 
@@ -47,6 +43,20 @@ const App = () => {
             />
           }
         />
+        <Route
+          path="/myelections"
+          element={
+            <ProtectedRoute
+              element={
+                <>
+                  <NavigationBar />
+                  <ElectionDetails />
+                </>
+              }
+            />
+          }
+        />
+        
         <Route
           path="/electionslist"
           element={

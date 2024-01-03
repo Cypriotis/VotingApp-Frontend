@@ -20,7 +20,7 @@ const CandidatesParentComponent = () => {
       const data = await apiService.getcandidates(electionid, token);
       setCandidates(data);
 
-      const voteddata = await apiService.uservoted(userId, token);
+      const voteddata = await apiService.uservoted(electionid, token);
       setAlreadyVoted(voteddata);
 
       console.log('Elections Data:', data);

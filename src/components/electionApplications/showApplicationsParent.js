@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import ElectionApplicationComponent from './showApplications'; // Import the new component
+import ElectionApplicationComponent from './showApplications';
 import apiService from '../../apiService';
 
 const ElectionApplicationsParentComponent = () => {
@@ -18,13 +18,27 @@ const ElectionApplicationsParentComponent = () => {
   };
 
   const handleAccept = async (applicationId) => {
-    // Implement the logic for accepting an application
-    console.log(`Accepting application with ID ${applicationId}`);
+    const tokenValue = localStorage.getItem('authToken');
+
+    try {
+      await apiService.acceptApplication(applicationId, tokenValue);
+      // After successful acceptance, refetch the data
+      fetchData();
+    } catch (error) {
+      console.error('Failed to accept application:', error);
+    }
   };
 
   const handleDecline = async (applicationId) => {
-    // Implement the logic for declining an application
-    console.log(`Declining application with ID ${applicationId}`);
+    const tokenValue = localStorage.getItem('authToken');
+
+    try {
+      await apiService.rejectApplication(applicationId, tokenValue);
+      // After successful rejection, refetch the data
+      fetchData();
+    } catch (error) {
+      console.error('Failed to decline application:', error);
+    }
   };
 
   useEffect(() => {
@@ -34,14 +48,20 @@ const ElectionApplicationsParentComponent = () => {
   return (
     <div>
       <h1>Your Election Applications</h1>
-      {electionApplications.map((application) => (
-        <ElectionApplicationComponent
-          key={application.ApplicationID}
-          applicationData={application}
-          onAccept={handleAccept}
-          onDecline={handleDecline}
-        />
-      ))}
+      {electionApplications.length === 0 ? (
+        <p>
+          Applications from people who want to add candidates to elections that you are the host will be displayed here when they occur.
+        </p>
+      ) : (
+        electionApplications.map((application) => (
+          <ElectionApplicationComponent
+            key={application.ApplicationID}
+            applicationData={application}
+            onAccept={handleAccept}
+            onDecline={handleDecline}
+          />
+        ))
+      )}
     </div>
   );
 };

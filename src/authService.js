@@ -1,5 +1,5 @@
 // authService.js
-const API_BASE_URL = 'http://13.39.19.184:3000/api';
+const API_BASE_URL = 'http://13.38.86.180:3000/api';
 
 const authService = {
   login: async (identifier, password) => {
@@ -114,6 +114,9 @@ const authService = {
       }
   
       const result = await response.json();
+      localStorage.removeItem('authToken');
+      localStorage.removeItem('ID');
+      
       return result; // Return the boolean result from the server
   
     } catch (error) {
@@ -125,11 +128,6 @@ const authService = {
     // Check if the authentication token is present in local storage
     const authToken = localStorage.getItem('authToken');
     return !!authToken;
-  },
-  logout: () => {
-    // Clear the authentication token from local storage
-    localStorage.removeItem('authToken');
-    localStorage.removeItem('ID');
   },
   
 };

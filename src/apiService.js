@@ -1,4 +1,4 @@
-const API_BASE_URL = 'http://13.39.19.184:3000/api';
+const API_BASE_URL = 'http://13.38.86.180:3000/api';
 
 const apiService = {
   electionreg: async (UserID, UniqueCode, token) => {
@@ -139,12 +139,12 @@ const apiService = {
     }
   },
 
-  uservoted: async (userid, token) => {
+  uservoted: async (electionid, token) => {
     const Authorization = token;
-    const id = userid;
+    const id = electionid;
 
     try {
-      const response = await fetch(`${API_BASE_URL}/checkvotingstatus/${id}`, {
+      const response = await fetch(`${API_BASE_URL}/check-vote/${id}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -299,6 +299,110 @@ try {
       return data; // Return the entire response data
     } catch (error) {
       console.error('Failed to add candidate:', error);
+      throw error;
+    }
+  },
+  acceptApplication: async (applicationId, token) => {
+    const Authorization = token;
+  
+    try {
+      const response = await fetch(`${API_BASE_URL}/acceptapplication/${applicationId}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*',
+          'Authorization': Authorization,
+        },
+        credentials: 'include',
+      });
+  
+      if (!response.ok) {
+        throw new Error('Failed to accept application');
+      }
+  
+      const data = await response.json();
+      console.log('Application accepted successfully');
+      // Adjust based on your server's requirements
+    } catch (error) {
+      console.error('Failed to accept application:', error);
+      throw error;
+    }
+  },
+  rejectApplication: async (applicationId, token) => {
+    const Authorization = token;
+  
+    try {
+      const response = await fetch(`${API_BASE_URL}/rejectapplication/${applicationId}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*',
+          'Authorization': Authorization,
+        },
+        credentials: 'include',
+      });
+  
+      if (!response.ok) {
+        throw new Error('Failed to accept application');
+      }
+  
+      const data = await response.json();
+      console.log('Application accepted successfully');
+      // Adjust based on your server's requirements
+    } catch (error) {
+      console.error('Failed to accept application:', error);
+      throw error;
+    }
+  },
+
+  getElectionDetails: async (userID, token) => {
+    const Authorization = token;
+  
+    try {
+      const response = await fetch(`${API_BASE_URL}/electiondetails/${userID}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*',
+          'Authorization': Authorization,
+        },
+        credentials: 'include',
+      });
+  
+      if (!response.ok) {
+        throw new Error('Failed to get election details');
+      }
+  
+      const data = await response.json();
+      return data; // Return the entire response data
+    } catch (error) {
+      console.error('Failed to get election details:', error);
+      throw error;
+    }
+  },
+
+  getElectionsData: async (userID, token) => {
+    const Authorization = token;
+
+    try {
+      const response = await fetch(`${API_BASE_URL}/electiondetails/${userID}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*',
+          'Authorization': Authorization,
+        },
+        credentials: 'include',
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to get elections data');
+      }
+
+      const data = await response.json();
+      return data; // Return the elections array directly
+    } catch (error) {
+      console.error('Failed to get elections data:', error);
       throw error;
     }
   },
