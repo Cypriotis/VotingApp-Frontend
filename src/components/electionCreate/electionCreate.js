@@ -33,7 +33,7 @@ const ElectionsList = () => {
         userid,
         token
       );
-      navigate('/test');      // Perform actions after successful login, such as redirecting the user or updating state
+      navigate('/electionslist');      // Perform actions after successful login, such as redirecting the user or updating state
      // console.log('User data:', userData);
     } catch (error) {
       // Handle login error, display an error message, etc.
