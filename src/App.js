@@ -15,6 +15,8 @@ import CandidatesParentComponent from './components/candidateList/CandidatesPare
 import ElectionApplicationsParentComponent from './components/electionApplications/showApplicationsParent';
 import ElectionDetails from './components/electionDetails/electionDetails';
 import Logout from './logout';
+import Parentresults from './components/resultsShow/resultsComp'
+import ElectionResults from './components/resultsShow/ElectionResults';
 
 const Home = () => <h2>Home</h2>;
 const Dashboard = () => <h2>Dashboard</h2>;
@@ -51,6 +53,32 @@ const App = () => {
                 <>
                   <NavigationBar />
                   <ElectionDetails />
+                </>
+              }
+            />
+          }
+        />
+        <Route
+          path="/results"
+          element={
+            <ProtectedRoute
+              element={
+                <>
+                  <NavigationBar />
+                  <Parentresults />
+                </>
+              }
+            />
+          }
+        />
+        <Route
+          path="/results/:electionid"
+          element={
+            <ProtectedRoute
+              element={
+                <>
+                  <NavigationBar />
+                  <ElectionResults />
                 </>
               }
             />

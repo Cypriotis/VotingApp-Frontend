@@ -16,6 +16,7 @@ const NavigationBar = () => {
           <li><Link to="/create">Create Election</Link></li>
           <li><Link to="/electionApplications">Check Your Election Applications</Link></li>
           <li><Link to="/electionreg">Register to election</Link></li>
+          <li><Link to="/results">Results</Link></li>
           {isLoggedIn ? (
             <>
               <li><Link to="/logout">Logout</Link></li>

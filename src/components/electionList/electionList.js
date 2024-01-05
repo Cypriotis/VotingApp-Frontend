@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './styles.css'; // Import your CSS file
+import './styless.css'; // Import your CSS file
 import apiService from '../../apiService.js';
 import { wait } from '@testing-library/user-event/dist/utils/index.js';
 

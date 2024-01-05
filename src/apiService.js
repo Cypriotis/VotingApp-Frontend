@@ -1,4 +1,4 @@
-const API_BASE_URL = 'http://52.47.85.84:3000/api';
+const API_BASE_URL = 'http://15.188.53.103:3000/api';
 
 const apiService = {
   electionreg: async (UserID, UniqueCode, token) => {
@@ -80,6 +80,29 @@ const apiService = {
 
       const data = await response.json();
       console.log('Registry to election successful');
+      // Adjust based on your server's requirements
+    } catch (error) {
+      console.error('Failed to register user to election:', error);
+      throw error;
+    }
+  },
+  results: async (userID) => {
+    const userid = userID;
+    try {
+      const response = await fetch(`https://8qme6oh2qe.execute-api.eu-west-3.amazonaws.com/final/{usedID+}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({userid}),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to register user to election');
+      }
+
+      const data = await response.json();
+      return data;
       // Adjust based on your server's requirements
     } catch (error) {
       console.error('Failed to register user to election:', error);
