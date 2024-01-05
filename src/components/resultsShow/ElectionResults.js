@@ -3,6 +3,8 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import apiService from '../../apiService';
+import './electionResultsStyles.css'; // Import the CSS file
+
 
 const ElectionResults = () => {
   const location = useLocation();
