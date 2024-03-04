@@ -1,33 +1,64 @@
 // NavigationBar.js
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import AuthService from '../../authService';
 import './navigationBarStyles.css';
 
 const NavigationBar = () => {
+  const [selectedOption, setSelectedOption] = useState('/');
+  const navigate = useNavigate();
   const isLoggedIn = AuthService.isAuthenticated();
+
+  const handleDropdownChange = (event) => {
+    const selectedRoute = event.target.value;
+    setSelectedOption(selectedRoute);
+    navigate(selectedRoute);
+  };
 
   return (
     <div className="navigation-bar-container">
       <div className="navbar-form">
-        <ul className="nav-list">
-          <li><Link to="/myelections">Your Elections</Link></li>
-          <li><Link to="/electionslist">Elections</Link></li>
-          <li><Link to="/create">Create Election</Link></li>
-          <li><Link to="/electionApplications">Check Your Election Applications</Link></li>
-          <li><Link to="/electionreg">Register to election</Link></li>
-          <li><Link to="/results">Results</Link></li>
-          {isLoggedIn ? (
-            <>
-              <li><Link to="/logout">Logout</Link></li>
-            </>
-          ) : (
-            <>
-              <li><Link to="/login">Login</Link></li>
-              <li><Link to="/register">Register</Link></li>
-            </>
+        {/* Logo */}
+        <div className="logo-container">
+          <img src="/logoname.png" alt="Logo" className="logo" />
+        </div>
+        <div className="nav-dropdown-container">
+          {isLoggedIn && (
+            <Link to="/Home" className="home-link" activeClassName="active-link">Home</Link>
           )}
-        </ul>
+          {isLoggedIn && (
+            <Link to="/OurTeam" className="home-link" activeClassName="active-link">OurTeam</Link>
+          )}
+          {/* Dropdown with the selected option */}
+          <select
+            className="nav-dropdown"
+            value={selectedOption}
+            onChange={handleDropdownChange}
+          >
+            <option value="/">Your Options</option>
+            <option value="/myelections">Your Elections</option>
+            <option value="/electionslist">Elections</option>
+            <option value="/create">Create Election</option>
+            <option value="/electionApplications">Check Your Election Applications</option>
+            <option value="/electionreg">Register for Election</option>
+            <option value="/results">Results</option>
+            {isLoggedIn ? (
+              <>
+                {/* Exclude "Logout" from the dropdown */}
+              </>
+            ) : (
+              <>
+                <option value="/login">Login</option>
+                <option value="/register">Register</option>
+              </>
+            )}
+          </select>
+          {/* Render "Logout" outside the dropdown for logged-in users */}
+          {isLoggedIn && (
+            <Link to="/logout" className="logout-link" activeClassName="active-link">Logout</Link>
+          )}
+          
+        </div>
       </div>
     </div>
   );

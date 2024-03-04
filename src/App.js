@@ -19,6 +19,8 @@ import Parentresults from './components/resultsShow/resultsComp'
 import ElectionResults from './components/resultsShow/ElectionResults';
 
 const Home = () => <h2>Home</h2>;
+const OurTeam = () => <h2>OurTeam</h2>;
+
 const Dashboard = () => <h2>Dashboard</h2>;
 const Login = () => <LoginForm />;
 
@@ -31,7 +33,34 @@ const App = () => {
         <Route path="/" element={<Navigate to="/login" />} />
         <Route path="/login" element={<Login />} />
         <Route path="/logout" element={<Logout />} />
+
         <Route path="/register" element={<RegistrationForm />} />
+        <Route
+          path="/home"
+          element={
+            <ProtectedRoute
+              element={
+                <>
+                  <NavigationBar />
+                  <Home />
+                </>
+              }
+            />
+          }
+        />
+        <Route
+          path="/OurTeam"
+          element={
+            <ProtectedRoute
+              element={
+                <>
+                  <NavigationBar />
+                  <OurTeam />
+                </>
+              }
+            />
+          }
+        />
         <Route
           path="/electionreg"
           element={
