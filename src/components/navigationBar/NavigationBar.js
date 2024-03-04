@@ -22,42 +22,37 @@ const NavigationBar = () => {
         <div className="logo-container">
           <img src="/logoname.png" alt="Logo" className="logo" />
         </div>
-        <div className="nav-dropdown-container">
+        <div className="nav-links-container">
           {isLoggedIn && (
-            <Link to="/Home" className="home-link" activeClassName="active-link">Home</Link>
+            <Link to="/Home" className="nav-link" activeClassName="active-link">Home</Link>
           )}
           {isLoggedIn && (
-            <Link to="/OurTeam" className="home-link" activeClassName="active-link">OurTeam</Link>
+            <Link to="/OurTeam" className="nav-link" activeClassName="active-link">Our Team</Link>
           )}
           {/* Dropdown with the selected option */}
-          <select
-            className="nav-dropdown"
-            value={selectedOption}
-            onChange={handleDropdownChange}
-          >
-            <option value="/">Your Options</option>
-            <option value="/myelections">Your Elections</option>
-            <option value="/electionslist">Elections</option>
-            <option value="/create">Create Election</option>
-            <option value="/electionApplications">Check Your Election Applications</option>
-            <option value="/electionreg">Register for Election</option>
-            <option value="/results">Results</option>
-            {isLoggedIn ? (
-              <>
-                {/* Exclude "Logout" from the dropdown */}
-              </>
-            ) : (
-              <>
-                <option value="/login">Login</option>
-                <option value="/register">Register</option>
-              </>
-            )}
-          </select>
+          <div className="nav-dropdown-container">
+            <div className="nav-dropdown" onMouseEnter={() => setSelectedOption('/')} onMouseLeave={() => setSelectedOption('/')}>
+              <label className="for-dropdown">Navigate ⌄<i className="uil uil-arrow-down"></i></label>
+              <div className="section-dropdown">
+                <Link to="/myelections">Your Elections <i className="uil uil-arrow-right"></i></Link>
+                <Link to="/electionslist">Elections <i className="uil uil-arrow-right"></i></Link>
+                <Link to="/create">Create Election <i className="uil uil-arrow-right"></i></Link>
+                <Link to="/electionApplications">Your Election Applications <i className="uil uil-arrow-right"></i></Link>
+                <Link to="/electionreg">Register for Election <i className="uil uil-arrow-right"></i></Link>
+                <Link to="/results">Results <i className="uil uil-arrow-right"></i></Link>
+                {isLoggedIn ? null : (
+                  <>
+                    <Link to="/login">Login <i className="uil uil-arrow-right"></i></Link>
+                    <Link to="/register">Register <i className="uil uil-arrow-right"></i></Link>
+                  </>
+                )}
+              </div>
+            </div>
+          </div>
           {/* Render "Logout" outside the dropdown for logged-in users */}
           {isLoggedIn && (
             <Link to="/logout" className="logout-link" activeClassName="active-link">Logout</Link>
           )}
-          
         </div>
       </div>
     </div>

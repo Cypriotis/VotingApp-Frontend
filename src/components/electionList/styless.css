@@ -33,7 +33,7 @@
 }
 
 .electionlist-form .icon-circle {
-  background-color: #dee9ff;
+  background-color: #319ab1;
   border-radius: 50%;
   width: 80px; /* Adjust the width */
   height: 80px; /* Adjust the height */
@@ -68,7 +68,7 @@
 }
 
 .electionlist-form .create-account:hover {
-  background-color: #768bca;
+  background-color: #319ab1;
 }
 
 .electionlist-form .social-media {

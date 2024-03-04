@@ -19,7 +19,7 @@ const RegistrationForm = () => {
       const userid = localStorage.getItem('ID');
       //console.log(userid)
       // Redirect the user to the desired URL (e.g., /something)
-      window.location.href = '/electionslist';
+      window.location.href = '/home';
     } catch (error) {
       // Handle login error, display an error message, etc.
       console.error('Login error:', error.message);

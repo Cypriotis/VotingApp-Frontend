@@ -6,11 +6,12 @@
   width: 100%;
   z-index: 1000;
   background-color: #ffffff; /* Keep the original background color */
-  border-bottom: 1px solid #ccc; /* Add a line at the bottom */
+  border-bottom: 1px solid #eeeeee; /* Add a line at the bottom */
+  height: 65px;
 }
 
 .navbar-form {
-  max-width: 1000px;
+  max-width: 1300px;
   margin: auto;
   padding: 2px 5px; /* Adjusted padding values */
   border-bottom-left-radius: 15px;
@@ -26,26 +27,28 @@
 
 .logo {
   max-width: 200px; /* Adjust the maximum width according to your preference */
+  margin-right: 20px; /* Adjust the left margin to move the logo further to the left */
 }
 
 .nav-dropdown-container {
   display: flex;
   align-items: center; /* Align items vertically in the center */
+  margin-right: 100px; /* Adjust the left margin to move the logo further to the left */
 }
 
 .nav-dropdown {
   padding: 8px;
   font-size: 16px;
-  color: rgba(0, 0, 0, 0.8);
   cursor: pointer;
   background: none;
+  font-weight: bold;
   border: none;
-  font-family: 'YourChosenFont', sans-serif; /* Specify your chosen font */
+  font-family: 'Helvetica', sans-serif; /* Specify your chosen font */
   transition: color 0.3s ease;
 }
 
 .nav-dropdown:hover {
-  color: #000;
+  color: #319ab1;
   text-decoration: none;
 }
 
@@ -55,7 +58,7 @@
   text-decoration: none;
   font-weight: bold;
   font-size: 16px;
-  font-family: 'YourChosenFont', sans-serif; /* Specify your chosen font */
+  font-family: 'Helvetica', sans-serif;/* Specify your chosen font */
   transition: color 0.3s ease;
 }
 .home-link {
@@ -64,7 +67,7 @@
   text-decoration: none;
   font-weight: bold;
   font-size: 16px;
-  font-family: 'YourChosenFont', sans-serif; /* Specify your chosen font */
+  font-family: 'Helvetica', sans-serif; /* Specify your chosen font */
   transition: color 0.3s ease;
 }
 
@@ -73,9 +76,125 @@
   text-decoration: none;
 }
 
-.home-link.active-link,
-.logout-link.active-link,
-.nav-dropdown:hover {
-  color: #ffffff;
+.navigation-bar-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background-color: #ffffff;
+  border-bottom: 1px solid #eeeeee;
+  height: 65px;
+}
+
+.navbar-form {
+  max-width: 1300px;
+  margin: auto;
+  padding: 2px 5px;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  max-width: 200px;
+  margin-right: 40px;
+}
+
+.nav-links-container {
+  display: flex;
+  align-items: center;
+}
+
+.nav-link {
+  margin-left: 20px;
+  color: rgba(0, 0, 0, 0.8);
   text-decoration: none;
+  font-weight: bold;
+  font-size: 16px;
+  font-family: 'Helvetica', sans-serif;
+  transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #319ab1;
+}
+
+.nav-dropdown {
+  padding: 8px;
+  margin-left: 60px;
+  color: rgba(0, 0, 0, 0.8);
+  font-size: 16px;
+  cursor: pointer;
+  background: none;
+  font-weight: bold;
+  border: none;
+  font-family: 'Helvetica', sans-serif;
+  transition: color 0.3s ease;
+}
+
+.logout-link {
+  margin-left: 20px;
+  color: rgba(0, 0, 0, 0.8);
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 16px;
+  font-family: 'Helvetica', sans-serif;
+  transition: color 0.3s ease;
+}
+
+.logout-link:hover {
+  color: #319ab1;
+  text-decoration: none;
+}
+
+.nav-dropdown-container {
+  position: relative;
+}
+
+.nav-dropdown {
+  padding: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  font-family: 'Helvetica', sans-serif;
+  transition: color 0.3s ease;
+  position: relative;
+}
+
+.section-dropdown {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #49cdeb;
+  border: 1px solid #eeeeee;
+  border-top: none;
+  width: 200px; 
+}
+
+.nav-dropdown:hover .section-dropdown {
+  display: block;
+}
+
+.section-dropdown a {
+  display: block;
+  padding: 8px;
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 16px;
+  font-family: 'Helvetica', sans-serif;
+  transition: color 0.3s ease;
+}
+
+.section-dropdown a:hover {
+  color: #000000;
 }
