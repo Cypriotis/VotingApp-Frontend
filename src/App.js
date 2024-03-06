@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import ProtectedRoute from './ProtectedRoute';
 import AuthService from './authService';
@@ -18,7 +18,40 @@ import Logout from './logout';
 import Parentresults from './components/resultsShow/resultsComp'
 import ElectionResults from './components/resultsShow/ElectionResults';
 
-const Home = () => <h2>Home</h2>;
+const Home = () => {
+  // Change the image source to the path of your image file
+  const [imageLoaded, setImageLoaded] = useState(false);
+  const imagePath = '../home.png';
+
+  useEffect(() => {
+    const image = new Image();
+    image.src = imagePath;
+
+    image.onload = () => {
+      setImageLoaded(true);
+    };
+  }, [imagePath]);
+
+  return (
+    <div>
+      <h2>Home</h2>
+      <div
+        style={{
+          marginTop: '1900px',
+          opacity: imageLoaded ? 1 : 0,
+          transition: 'opacity 1s ease-in-out', // Smooth transition over 1 second
+        }}
+      >
+        <img
+          src={imagePath}
+          alt="Displayed Image"
+          style={{ maxWidth: '100%', maxHeight: '100%' }}
+        />
+      </div>
+    </div>
+  );
+};
+
 const OurTeam = () => <h2>OurTeam</h2>;
 
 const Dashboard = () => <h2>Dashboard</h2>;
