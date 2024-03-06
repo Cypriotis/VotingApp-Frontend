@@ -37,7 +37,7 @@ const Home = () => {
       <h2>Home</h2>
       <div
         style={{
-          marginTop: '1900px',
+          marginTop: '1750px',
           opacity: imageLoaded ? 1 : 0,
           transition: 'opacity 1s ease-in-out', // Smooth transition over 1 second
         }}
@@ -52,7 +52,38 @@ const Home = () => {
   );
 };
 
-const OurTeam = () => <h2>OurTeam</h2>;
+const OurTeam = () => {
+    // Change the image source to the path of your image file
+    const [imageLoaded, setImageLoaded] = useState(false);
+    const imagePath = '../aboutus.png';
+  
+    useEffect(() => {
+      const image = new Image();
+      image.src = imagePath;
+  
+      image.onload = () => {
+        setImageLoaded(true);
+      };
+    }, [imagePath]);
+  
+    return (
+      <div>
+        <div
+          style={{
+            marginTop: '1800px',
+            opacity: imageLoaded ? 1 : 0,
+            transition: 'opacity 1s ease-in-out', // Smooth transition over 1 second
+          }}
+        >
+          <img
+            src={imagePath}
+            alt="Displayed Image"
+            style={{ maxWidth: '100%', maxHeight: '100%' }}
+          />
+        </div>
+      </div>
+    );
+  };
 
 const Dashboard = () => <h2>Dashboard</h2>;
 const Login = () => <LoginForm />;

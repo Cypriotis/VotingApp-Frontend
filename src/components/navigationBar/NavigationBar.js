@@ -20,7 +20,9 @@ const NavigationBar = () => {
       <div className="navbar-form">
         {/* Logo */}
         <div className="logo-container">
-          <img src="/logoname.png" alt="Logo" className="logo" />
+        <Link to="/Home">
+            <img src="/logoname.png" alt="Logo" className="logo" />
+          </Link>
         </div>
         <div className="nav-links-container">
           {isLoggedIn && (
