@@ -1,4 +1,5 @@
-const API_BASE_URL = 'http://52.47.102.10:3000/api';
+//const API_BASE_URL = 'http://52.47.102.10:3000/api';
+const API_BASE_URL = 'http://BackendLB-1438035099.eu-west-3.elb.amazonaws.com/api';
 
 const apiService = {
   electionreg: async (UserID, UniqueCode, token) => {
