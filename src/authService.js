@@ -1,5 +1,5 @@
 // authService.js
-const API_BASE_URL = 'http://35.180.181.206:3000/api';
+const API_BASE_URL = 'http://15.188.3.176:3000/api';
 
 const authService = {
   login: async (identifier, password) => {
