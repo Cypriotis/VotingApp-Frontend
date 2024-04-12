@@ -1,4 +1,4 @@
-const API_BASE_URL = 'http://52.47.102.10:3000/api';
+const API_BASE_URL = 'http://35.180.181.206:3000/api';
 
 
 const apiService = {
