@@ -3,27 +3,27 @@ import './style.css';
 import apiService from '../../apiService.js';
 import { useNavigate } from 'react-router-dom';
 
-
 const ElectionsList = () => {
   const [title, settitle] = useState('');
   const [description, setdescription] = useState('');
   const [startdatetime, setstartdatetime] = useState('');
   const [enddatetime, setenddatetime] = useState('');
-  const [email, setEmail] = useState('');
-
-  const navigate = useNavigate();  // Change the hook name to useNavigate
-
-
+  const navigate = useNavigate();
 
   const handleCreateElection = async () => {
     try {
       const userid = localStorage.getItem('ID');
       const token = localStorage.getItem('authToken');
-      
 
       // Ensure the datetime format is compatible with your backend's expectations
       const formattedStartDatetime = new Date(startdatetime).toISOString();
       const formattedEndDatetime = new Date(enddatetime).toISOString();
+
+      // Check if start date is later than end date
+      if (new Date(startdatetime) > new Date(enddatetime)) {
+        alert('Start date cannot be later than end date');
+        return; // Exit function early
+      }
 
       const userData = await apiService.electioncreate(
         title,
@@ -33,11 +33,9 @@ const ElectionsList = () => {
         userid,
         token
       );
-      navigate('/electionslist');      // Perform actions after successful login, such as redirecting the user or updating state
-     // console.log('User data:', userData);
+      navigate('/electionslist');
     } catch (error) {
-      // Handle login error, display an error message, etc.
-      console.error('Login error:', error);
+      console.error('Error:', error);
     }
   }
 
