@@ -1,4 +1,4 @@
-const API_BASE_URL = 'http://backend-574994684.eu-west-3.elb.amazonaws.com';
+const API_BASE_URL = 'https://backend-574994684.eu-west-3.elb.amazonaws.com';
 
 
 const apiService = {
