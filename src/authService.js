@@ -20,7 +20,7 @@ app.use(cors({
 app.use('/api', votesController);
 
 app.get('/', (req, res) => {
-  res.send('Hello, this is the root route!');
+  res.send('Hello, this is the root route!!!');
 });
 
 
