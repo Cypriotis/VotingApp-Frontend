@@ -24,6 +24,7 @@ app.get('/', (req, res) => {
 });
 
 
+
 // Mount your authController routes and use the authenticateJWT middleware
 app.use('/api', authController);
 
