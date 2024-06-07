@@ -1,137 +1,39 @@
-// authService.js
-const API_BASE_URL = 'http://backend-574994684.eu-west-3.elb.amazonaws.com:3000/api';
+const express = require('express');
+const bodyParser = require('body-parser');
+const cors = require('cors'); // Import the cors middleware
+const db = require('./database.js');
+const votesController = require('./votesController.js');
+const authController = require('./authController.js');
+const { authenticateJWT } = require('./middleware.js');
+require('dotenv').config();
+const logger = require('./logger.js');
+const app = express();
+const port = 3000;
+// Middleware for parsing JSON in request bodies
+app.use(bodyParser.json());
+// Middleware for enabling CORS
+app.use(cors({ 
+  origin: 'http://frontreact-1320091535.eu-west-3.elb.amazonaws.com',
+  credentials: true // Allow credentials (cookies, authorization headers)
+}));
+// Mount your votesController routes
+app.use('/api', votesController);
 
-const authService = {
-  login: async (identifier, password) => {
-    try {
-      const response = await fetch(`${API_BASE_URL}/login`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': '*', // Adjust based on your server's requirements
-        },
-        body: JSON.stringify({ identifier, password }),
-        credentials: 'include', // Include credentials (cookies, etc.)
-      });
-
-      if (!response.ok) {
-        throw new Error('Login failed');
-      }
-
-      const data = await response.json();
-      console.log('Login successful:', data);
-
-      // Save the authentication token in local storage
-      localStorage.setItem('authToken', data.token);
-      localStorage.setItem('ID', data.userID);
-
-      // You can handle the response data as needed
-      // For example, you might store user information in state or context
-
-    } catch (error) {
-      console.error('Login failed:', error.message);
-      throw error;
-    }
-  },
-
-  register: async (username, password, email) => {
-    try {
-      const response = await fetch(`${API_BASE_URL}/register`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': '*', // Adjust based on your server's requirements
-        },
-        body: JSON.stringify({ username, password, email }),
-      });
-
-      if (!response.ok) {
-        throw new Error('Registration failed');
-      }
-
-      const data = await response.json();
-      console.log('Registration successful:', data);
-
-      // Save the authentication token in local storage upon successful registration
-      localStorage.setItem('authToken', data.token);
-
-      // You can handle the response data as needed
-      // For example, you might store user information in state or context
-
-    } catch (error) {
-      console.error('Registration failed:', error.message);
-      throw error;
-    }
-  },
-
-  isAuthenticated: async () => {
-    try {
-      const authToken = localStorage.getItem('authToken');
-      const response = await fetch(`${API_BASE_URL}/isauthenticated`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': '*', // Adjust based on your server's requirements
-        },
-        body: JSON.stringify({ token: authToken }), // Pass authToken as a POST parameter
-        credentials: 'include', // Include credentials (cookies, etc.)
-      });
-
-      if (!response.ok) {
-        console.error('Error checking authentication status:', response.statusText);
-        return false; // Return false if the response status is not 200
-      }
-
-      const result = await response.json();
-      return result; // Return the boolean result from the server
-
-    } catch (error) {
-      console.error('Error checking authentication status:', error.message);
-      return false; // Return false in case of an error
-    }
-  },
-  logout: async () => {
-    try {
-      const authToken = localStorage.getItem('authToken');
-      const userid = localStorage.getItem('ID');
-      localStorage.removeItem('authToken');
-      localStorage.removeItem('ID');
-  
-      const response = await fetch(`${API_BASE_URL}/logout`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': '*', // Adjust based on your server's requirements
-          'Authorization': authToken,
-        },
-        body: JSON.stringify({ userid }),
-        credentials: 'include', // Include credentials (cookies, etc.)
-      });
-  
-      if (!response.ok) {
-        console.error('Error logging out user', response.statusText);
-        return false; // Return false if the response status is not 200
-      }
-  
-      const result = await response.json();
-      localStorage.removeItem('authToken');
-      localStorage.removeItem('ID');
-      
-      return result; // Return the boolean result from the server
-  
-    } catch (error) {
-      console.error('Error logging user out:', error.message);
-      return false; // Return false in case of an error
-    }
-  },
-  isLoggedIn: () => {
-    // Check if the authentication token is present in local storage
-    const authToken = localStorage.getItem('authToken');
-    return !!authToken;
-  },
-  
-};
+app.get('/', (req, res) => {
+  res.send('Hello, this is the root route!');
+});
 
 
+// Mount your authController routes and use the authenticateJWT middleware
+app.use('/api', authController);
 
-export default authService;
+// Error handling middleware
+app.use((err, req, res, next) => {
+  logger.error('Error:', err);
+  res.status(500).json({ error: 'Internal Server Error' });
+});
+// Start the server
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
+  logger.info('Backend started!');
+});
