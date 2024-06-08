@@ -1,5 +1,5 @@
 //const API_BASE_URL = 'http://51.44.6.249:3000/api';
-const API_BASE_URL = 'http://Backend-574994684.eu-west-3.elb.amazonaws.com/api';
+const API_BASE_URL = 'https://Backend-574994684.eu-west-3.elb.amazonaws.com/api';
 
 
 const authService = {
