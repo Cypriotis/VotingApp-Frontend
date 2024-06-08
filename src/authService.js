@@ -7,7 +7,7 @@ const authService = {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': '*', // Adjust based on your server's requirements
+          //'Access-Control-Allow-Origin': '*', // Adjust based on your server's requirements
         },
         body: JSON.stringify({ identifier, password }),
         credentials: 'include', // Include credentials (cookies, etc.)
